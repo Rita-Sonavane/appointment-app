@@ -1,1 +1,44 @@
-<p>appointment-list works!</p>
+<div class="container">
+
+  <div class="card mt-3 p-2">
+
+    <div class="row">
+      <div class="col">
+        <h2 class="text-center">Create new appointment</h2>
+      </div>
+    </div>
+
+
+    <div class="row mt-3 mb-3">
+      <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Aappointment description" [(ngModel)]="newAppontmentTitle">
+      </div>
+      <div class="col-md-4">
+        <input type="date" class="form-control" placeholder="Appointment date" [(ngModel)]="newAppontmentDate">
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary w-100" (click)="addAppointment()">Add</button>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <h2 class="text-center mt-5">Appointments</h2>
+
+  <ul class="list-group mt-3">
+    <li class="list-group-item d-flex justify-content-between align-items-center"
+      *ngFor="let appointment of appointments; let i = index" style="display: flex;">
+      {{ i + 1}}
+      {{appointment.title}}
+
+      {{appointment.date | date: 'dd.mm.yyyy'}}
+
+      <button type="button" class="btn btn-danger" (click)="deleteAppointment(i)">Delete</button>
+
+    </li>
+  </ul>
+
+
+</div>
