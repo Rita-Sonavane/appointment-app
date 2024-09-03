@@ -1,0 +1,117 @@
+<section class="contact_section">
+    <!-- <div class="dot_design">
+        <img src="assets/images/dots.png" alt="">
+    </div> -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form_container mt-5" *ngIf="currentFormMode === 'login'">
+                    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+                        <h4>
+                            LOGIN
+                            <!-- <span>APPOINTMENT</span> -->
+                        </h4>
+
+                        <!-- <div class="form-row"> -->
+                        <div class="form-group">
+                            <label for="inputPatientName">Email</label>
+                            <input type="text" class="form-control" placeholder="email@website.com"
+                                formControlName="email">
+                            <div *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid"
+                                class="text-danger">
+                                Email is required
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPatientName">Password</label>
+                            <input type="password" class="form-control" placeholder="Password"
+                                formControlName="password">
+                            <div *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid"
+                                class="text-danger">
+                                Password is required
+                            </div>
+                        </div>
+
+                        <!-- </div> -->
+
+                        <div class="btn-box">
+                            <button type="submit" class="btn ">Sign In</button>
+                        </div>
+
+                        <div class="sign-in-separator text-center">
+                            <span>Don't have an account? <a (click)="changeFormMode('register')"
+                                    class="link login-link">Sign up</a></span>
+                        </div>
+
+                    </form>
+                </div>
+
+
+
+                <div class="form_container mt-5" *ngIf="currentFormMode === 'register'">
+                    <form [formGroup]="registerForm" (ngSubmit)="onRegistersubmit()">
+                        <h4>
+                            REGISTER
+                            <!-- <span>APPOINTMENT</span> -->
+                        </h4>
+
+                        <!-- <div class="form-row"> -->
+                        <div class="form-group">
+                            <label for="inputPatientName">Name</label>
+                            <input type="text" class="form-control" formControlName="name"
+                                placeholder="Enter Your Name">
+                            <div *ngIf="registerForm.get('name').touched && registerForm.get('name').invalid"
+                                class="text-danger">
+                                Name is required
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPatientName">Email</label>
+                            <input type="email" class="form-control" placeholder="email@website.com"
+                                formControlName="email">
+                            <div *ngIf="registerForm.get('email').touched && registerForm.get('email').invalid"
+                                class="text-danger">
+                                Valid email is required
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPatientName">Password</label>
+                            <input type="password" class="form-control" placeholder="Minimum 8 characters"
+                                formControlName="password">
+
+                            <div *ngIf="registerForm.get('password').touched && registerForm.get('password').invalid"
+                                class="text-danger">
+                                Password must be at least 6 characters
+                            </div>
+                        </div>
+
+                        <!-- </div> -->
+
+                        <div class="btn-box">
+                            <button type="submit" class="btn">Sign Up</button>
+                        </div>
+
+
+                        <div class="sign-in-separator text-center">
+                            <span>Back To <a (click)="changeFormMode('login')" class="link login-link">Sign
+                                    In</a></span>
+                        </div>
+
+                    </form>
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+                <div class="img-box">
+                    <img src="assets/images/login.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
