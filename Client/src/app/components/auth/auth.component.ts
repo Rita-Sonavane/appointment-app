@@ -24,7 +24,7 @@ export class AuthComponent implements OnInit {
 
     this.store.select(selectIsAuthenticated).subscribe(isAuthenticated => {
       if (isAuthenticated) {
-        this.router.navigate(['/list']);
+        this.router.navigate(['home/list']);
       }
     });
 
@@ -64,7 +64,7 @@ export class AuthComponent implements OnInit {
             timer: 1000, // Automatically close after 2 seconds
             showConfirmButton: false // Hide the confirm button
           }).then(() => {
-            // this.router.navigate(['/dashboard']);
+            this.router.navigate(['home/list']);
           });
         },
         (error) => {

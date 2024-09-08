@@ -12,12 +12,20 @@ import { AuthEffects } from './effects/auth.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './reducer/auth.reducer';
 import { TokenInterceptor } from './interceptor/token.interceptor';
+import { BookAppointmantComponent } from './components/book-appointmant/book-appointmant.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AppontmentEffects } from './effects/appointment.effects';
+import { appointmentReducer } from './reducer/appointment.reducer';
+import { reducers } from './reducer';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AppointmentListComponent,
-    AuthComponent
+    AuthComponent,
+    BookAppointmantComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,8 +33,8 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({ auth: authReducer }),
-    EffectsModule.forRoot([AuthEffects])
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AppontmentEffects, AuthEffects])
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

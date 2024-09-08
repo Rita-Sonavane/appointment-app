@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 * {
     padding: 0PX;
@@ -8,7 +8,8 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: "Poppins", sans-serif !important;
     color: #0c0c0c;
     background-color: #ffffff;
     overflow-x: hidden;
@@ -127,7 +128,7 @@ a:focus {
 }
 
 .navbar-brand {
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     padding: 15px 35px;
 }
 

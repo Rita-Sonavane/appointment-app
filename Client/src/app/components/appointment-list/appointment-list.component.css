@@ -1,0 +1,293 @@
+/* .container {
+    margin: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+
+}
+
+th {
+    background-color: #e9f2f9;
+    color: #333;
+    font-weight: bold;
+}
+
+tr {
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+tr:hover {
+    background-color: #d4edda;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.name-container {
+    display: flex;
+    align-items: center;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+ */
+
+
+h4 {
+    position: relative;
+    padding-bottom: 5px;
+    margin-bottom: 35px;
+
+}
+
+h4 span {
+    color: #00c6a9;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+
+}
+
+h4::before {
+    content: "";
+    position: absolute;
+    /* left: 0; */
+    bottom: 0;
+    width: 170px;
+    height: 2px;
+    background-color: #00c6a9;
+}
+
+.Status {
+    display: flex;
+    align-items: center;
+}
+
+.Status span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.Status.active span {
+    background-color: #28a745;
+}
+
+.Status.inactive span {
+    background-color: #6c757d;
+}
+
+
+.low-priority {
+    background-color: red;
+}
+
+.medium-priority {
+    background-color: yellow;
+}
+
+.high-priority {
+    background-color: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container {
+    margin: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.priority {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0 10px;
+    color: #333;
+}
+
+.status span {
+    padding: 5px 10px;
+    border-radius: 12px;
+    /* color: #fff; */
+    color: #333;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.status .pending {
+
+    color: #fff;
+
+
+}
+
+
+.date {
+    color: #777;
+    font-size: 14px;
+}
+
+/* .avatar {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.avatar img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+} */
+
+/* Action Menu */
+.action-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.action-menu button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.action-menu-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    min-width: 120px;
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.action-menu-content a {
+    color: #333;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.action-menu-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.action-menu:hover .action-menu-content {
+    display: block;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    th {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #eee;
+    }
+
+    td {
+        padding-left: 40%;
+        position: relative;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+        color: #333;
+    }
+
+    .priority {
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    /* .avatar {
+        width: 40px;
+        height: 40px;
+    } */
+
+    .action-menu-content {
+        position: static;
+    }
+}

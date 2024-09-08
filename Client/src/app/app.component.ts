@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Store } from '@ngrx/store';
 import { setCurrentUser } from './action/auth.actions';
+import { NotificationService } from './services/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { setCurrentUser } from './action/auth.actions';
 export class AppComponent implements OnInit {
   title = 'Appointment App';
 
-  constructor(private store: Store, private authService: AuthService) { }
+  constructor(private store: Store, private authService: AuthService, private notificationService: NotificationService) { }
 
   ngOnInit() {
     const token = this.authService.getToken();
@@ -23,6 +24,8 @@ export class AppComponent implements OnInit {
     } else {
       console.log("No token or user found in localStorage");
     }
+
+    this.notificationService.checkReminders();
   }
 
 }

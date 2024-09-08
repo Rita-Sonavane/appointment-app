@@ -2,14 +2,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+require("./cron/reminder-job");
 
 dotenv.config();
 
-const authMiddleware = require("./middleware/auth.js");
+const authenticateToken = require("./middleware/auth.js");
 
 const router = express.Router();
 
-router.use(authMiddleware);
+router.use(authenticateToken);
 
 const task = require("./routes/taskRoutes.js");
 const user = require("./routes/userRoutes.js");
@@ -40,7 +41,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use("/users", user);
-app.use("/tasks", task);
+app.use("/tasks", authenticateToken, task);
 
 app.use(express.json());
 

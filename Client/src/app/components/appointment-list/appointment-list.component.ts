@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Appointment } from 'src/app/models/appointment';
+import { Store } from '@ngrx/store'; import { Observable } from 'rxjs';
+import { Appointmet } from 'src/app/models/appointment';
+import { selectAllAppointments } from 'src/app/selectors/appointment.selector';
+import * as AppointmentActions from 'src/app/action/appointment.action';
 import { selectCurrentUser } from 'src/app/selectors/auth.selectors';
 
 @Component({
@@ -10,56 +12,42 @@ import { selectCurrentUser } from 'src/app/selectors/auth.selectors';
 })
 export class AppointmentListComponent implements OnInit {
 
-  newAppontmentTitle: string = '';
-  newAppontmentDate: Date = new Date();
 
-  appointments: Appointment[] = [];
-  currentUser$ = this.store.select(selectCurrentUser);
+  appointments$: Observable<Appointmet[]> | undefined;
+  // loading$: Observable<boolean> | undefined;
+  appointments: Appointmet[] = [];
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
 
-
-
+  }
 
   ngOnInit(): void {
+    this.store.select(selectAllAppointments).subscribe(data => {
+      console.log('Appointments:', data); // Debugging line
+      this.appointments = data;
+    });
 
-    this.currentUser$.subscribe(user => {
-      console.log("User", user);
-    })
 
-    let savedAppointments = localStorage.getItem('appointments');
+    // Dispatch the action to load appointments
+    this.store.dispatch(AppointmentActions.loadAppointments());
 
-    //if savedAppointments jave value then parse data beacuse it is in josn
-    // or if savedAppointments null or undefide then create empty array
-    this.appointments = savedAppointments ? JSON.parse(savedAppointments) : [];
+    this.appointments$ = this.store.select(selectAllAppointments);
+    // this.loading$ = this.store.select(selectAppointmentLoading);
+  }
+
+
+  onEdit(appointment: Appointmet) {
+    console.log("app", appointment);
+    // Trigger edit action
+    // this.store.dispatch(AppointmentActions.editAppointment({ appointment }));
+  }
+
+  onDelete(id: string) {
+    console.log("app id", id);
+    // Trigger delete action
+    // this.store.dispatch(AppointmentActions.deleteAppointment({ id }));
   }
 
 
 
-  addAppointment() {
-
-    if (this.newAppontmentTitle.trim().length && this.newAppontmentDate) {
-
-      let newAppontment: Appointment = {
-        id: Date.now(),
-        title: this.newAppontmentTitle,
-        date: this.newAppontmentDate
-      }
-
-      this.appointments.push(newAppontment);
-
-      localStorage.setItem("appointments", JSON.stringify(this.appointments));
-
-      this.newAppontmentTitle = "";
-      this.newAppontmentDate = new Date();
-
-    }
-
-  }
-
-
-  deleteAppointment(index: number) {
-    this.appointments.splice(index, 1);
-    localStorage.setItem("appointments", JSON.stringify(this.appointments));
-  }
 }

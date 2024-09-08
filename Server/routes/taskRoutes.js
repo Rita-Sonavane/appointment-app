@@ -3,13 +3,16 @@ const {
   createTask,
   updateTask,
   dateteTask,
+  getTaskById,
 } = require("../controllers/task.js");
 const express = require("express");
+const authenticateToken = require("../middleware/auth.js");
 
 const router = express.Router();
 
 router.get("/", getTask);
-router.post("/create", createTask);
+router.get("/:id", getTaskById);
+router.post("/create", authenticateToken, createTask);
 router.put("/update/:id", updateTask);
 router.delete("/delete/:id", dateteTask);
 
