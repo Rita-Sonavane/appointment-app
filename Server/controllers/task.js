@@ -47,7 +47,7 @@ const updateTask = async (req, res) => {
   const { title, description, priority, deadline, reminder, status } = req.body;
   const task = await Task.findByIdAndUpdate(
     req.params.id,
-    { title, description, priority, deadline, reminder },
+    { title, description, priority, deadline, status, reminder },
     { new: true }
   );
   res.json(task);

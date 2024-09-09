@@ -17,6 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppontmentEffects } from './effects/appointment.effects';
 import { appointmentReducer } from './reducer/appointment.reducer';
 import { reducers } from './reducer';
+import { TaskSearchPipe } from './task-search.pipe';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { reducers } from './reducer';
     AuthComponent,
     BookAppointmantComponent,
     NavbarComponent,
+    TaskSearchPipe,
   ],
   imports: [
     BrowserModule,

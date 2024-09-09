@@ -1,115 +1,82 @@
-<div class="appointment-container ">
-    <h4 class=" mt-5 ">
-        Appointments
-    </h4>
+<div class="appointment-container layout_padding">
+    <div class="col">
+        <h4>
+            Appointments
+        </h4>
 
-    <!-- <div *ngIf="loading$ | async" class="loading">
-        Loading appointments...
-    </div> -->
+        <div class="categories">
+
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search tasks">
+            </div>
+
+            <button (click)="ShowAllTask()" class="btn ">Show All Tasks</button>
+            <button (click)="CompleteTask()" class="btn ">Show Completed Tasks</button>
+            <button (click)="IncompleteTask()" class="btn ">Show Pending Tasks</button>
+
+        </div>
+
+        <div *ngIf="loading$ | async" class="loading">
+            Loading appointments...
+        </div>
 
 
-    <!-- <table *ngIf="(appointments$ | async)?.length; else noAppointments">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Priority</th>
-                <th>Deadline</th>
-                <th>Reminder</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="highlight" *ngFor="let appointment of (appointments$ | async); let i = index">
-                <td>{{i+1}}</td>
-                <td>{{ appointment.description }}</td>
-                <td>{{ appointment.title }}</td>
-                <td class="status">
-                    <span [ngClass]="{
+
+        <table *ngIf="appointments.length; else noAppointments">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Priority</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th>Reminder</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let appointment of (filteredAppointments | taskSearch:searchTerm); let i = index">
+
+                    <td>{{i+1}}</td>
+                    <td>{{ appointment.description }}</td>
+                    <td>{{ appointment.title }}</td>
+                    <td class="Status">
+                        <span [ngClass]="{
                       'low-priority': appointment.priority === 'low',
                       'medium-priority': appointment.priority === 'medium',
                       'high-priority': appointment.priority === 'high'
                     }"></span>
-                    {{ appointment.priority }}
-                </td>
-                <td>{{ appointment.deadline | date }}</td>
-                <td>{{ appointment.reminder | date }}</td>
-                <td>
-                    <button (click)="onEdit(appointment)">Edit</button>
-                    <button (click)="onDelete(appointment._id)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table> -->
-
-
-    <table *ngIf="(appointments$ | async)?.length; else noAppointments">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Priority</th>
-                <th>Deadline</th>
-                <th>Status</th>
-                <th>Reminder</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="highlight" *ngFor="let appointment of (appointments$ | async); let i = index">
-
-                <!-- <td>Finance team meet to discuss Q3 results</td>
-                <td><span class="avatar"><img src="https://via.placeholder.com/30" alt="Avatar"></span> John</td>
-                <td class="date">Today</td>
-                <td><span class="status complete">Complete</span></td> -->
-
-
-                <td>{{i+1}}</td>
-                <td>{{ appointment.description }}</td>
-                <td>{{ appointment.title }}</td>
-                <td class="Status">
-                    <span [ngClass]="{
-                      'low-priority': appointment.priority === 'low',
-                      'medium-priority': appointment.priority === 'medium',
-                      'high-priority': appointment.priority === 'high'
-                    }"></span>
-                    {{ appointment.priority }}
-                </td>
-                <td>{{ appointment.deadline | date }}</td>
-                <td class="status"><span [ngClass]="{
+                        {{ appointment.priority }}
+                    </td>
+                    <td>{{ appointment.deadline | date }}</td>
+                    <td class="status"><span [ngClass]="{
                     'low-priority': appointment.status === 'pending',
                     'medium-priority': appointment.status === 'inProcess',
                     'high-priority': appointment.status === 'complete'
                   }">{{ appointment.status }}</span></td>
-                <td>{{ appointment.reminder | date }}</td>
-                <!-- <td>
-                    <button (click)="onEdit(appointment)">Edit</button>
-                    <button (click)="onDelete(appointment._id)">Delete</button>
-                </td> -->
-                <td>
-                    <div class="action-menu">
-                        <button>⋮</button>
-                        <div class="action-menu-content ">
-                            <a> <i class="fa fa-pencil" style="color:#333"></i> Edit</a>
-                            <a> <i class="fa fa-trash-o" style="color:red"></i> Delete</a>
+                    <td>{{ appointment.reminder | date: 'MMMM d, y, h:mm a' }}</td>
+
+                    <td>
+                        <div class="action-menu">
+                            <button>⋮</button>
+                            <div class="action-menu-content ">
+                                <a (click)="onEdit(appointment)"> <i class="fa fa-pencil" style="color:#333"></i>
+                                    Edit</a>
+                                <a (click)="onDelete(appointment._id)"> <i class="fa fa-trash-o" style="color:red"></i>
+                                    Delete</a>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <ng-template #noAppointments>
-        <p>No appointments found.</p>
-    </ng-template>
+        <ng-template #noAppointments>
+            <p>No appointments found.</p>
+        </ng-template>
+
+    </div>
 </div>
-
-
-
-<!-- <div class="container"> -->
-<!-- <div class="priority">High Priority</div> -->
-
-<!-- </div> -->

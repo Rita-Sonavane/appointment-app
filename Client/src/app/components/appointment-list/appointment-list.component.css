@@ -117,9 +117,40 @@ h4::before {
 }
 
 
+.categories {
+    display: flex;
+    flex-direction: row;
+    line-height: 2.375rem;
+}
 
 
+.categories .btn {
+    background-color: #00c6a9;
+    color: #fff;
+    /* padding: 10px 45px; */
+    border-radius: 50px;
+    /* margin-top: 10px; */
+    margin-bottom: 20px;
+    font-size: 14px;
+    margin-left: 20px;
+}
 
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
 
 
 
@@ -132,11 +163,22 @@ h4::before {
 .container {
     margin: 20px;
     overflow-x: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.col {
+    padding: 35px 45px;
+    -webkit-box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.07);
+
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+
 }
 
 table th,
@@ -225,6 +267,7 @@ tr {
     padding: 8px 16px;
     text-decoration: none;
     display: block;
+    cursor: pointer;
 }
 
 .action-menu-content a:hover {

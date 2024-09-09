@@ -62,4 +62,17 @@ export class AppontmentEffects {
         )
     );
 
+
+    getAppointmentById$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AppointmentActions.getAppointmentById),
+            mergeMap((action) =>
+                this.appointmentService.getTaskById(action.id).pipe(
+                    map((appointment) => AppointmentActions.getAppointmentByIdSuccess({ appointment })),
+                    catchError((error) => of(AppointmentActions.getAppointmentByIdFailure({ error })))
+                )
+            )
+        )
+    );
+
 }

@@ -41,3 +41,18 @@ export const deleteAppointmentFailure = createAction(
     '[Appointment] Delete Appointment Failure',
     props<{ error: string }>()
 );
+
+export const getAppointmentById = createAction(
+    '[Appointment] Get Appointment By ID',
+    props<{ id: string }>()
+);
+
+export const getAppointmentByIdSuccess = createAction(
+    '[Appointment] Get Appointment By ID Success',
+    props<{ appointment: Appointmet }>()
+);
+
+export const getAppointmentByIdFailure = createAction(
+    '[Appointment] Get Appointment By ID Failure',
+    props<{ error: any }>()
+);

@@ -15,6 +15,7 @@ const routes: Routes = [
     children: [
       { path: 'list', component: AppointmentListComponent, },
       { path: 'book', component: BookAppointmantComponent },
+      { path: 'book/:id', component: BookAppointmantComponent },
     ]
   },
   { path: '**', redirectTo: 'auth' }

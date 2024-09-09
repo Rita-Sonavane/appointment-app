@@ -24,8 +24,8 @@ export class AppointmetService {
   }
 
 
-  getTaskById(id: string): Observable<void> {
-    return this.http.get<void>(`${this.apiUrl}/${id}`);
+  getTaskById(id: string): Observable<Appointmet> {
+    return this.http.get<Appointmet>(`${this.apiUrl}/${id}`);
   }
 
   createAppo(appointment: Appointmet): Observable<Appointmet> {
